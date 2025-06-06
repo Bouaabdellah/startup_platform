@@ -6,12 +6,12 @@ import { auth, signIn, signOut } from '@/auth';
 async function NavBar() {
   const session = await auth();
   return (
-    <header>
+    <header className='mb-4 px-8'>
       <nav className="flex justify-between items-center">
-        <Link href="/">
-          <Image src="/Group 5.png" alt="Yc logo" width={300} height={100} />
+        <Link href="/" className="w-48 md:w-68 lg:w-78 relative">
+          <Image src="/Group 5.png" alt="Yc logo" width={300} height={100} layout="responsive"/>
         </Link>
-        <div className="flex gap-6 text-[18px] font-bold">
+        <div className="flex flex-col items-center text-[12px] sm:text-[18px] sm:flex-row sm:gap-6 font-semibold sm:font-bold">
           {session && session?.user ? (
             <>
               <Link href="/startup/create">

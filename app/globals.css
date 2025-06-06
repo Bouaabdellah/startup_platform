@@ -56,11 +56,11 @@
     }
 
     .heading {
-        @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
+        @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[26px] leading-[46px] max-w-5xl text-center my-5;
     }
 
     .sub-heading {
-        @apply font-medium text-[20px] text-white max-w-2xl text-center break-words;
+        @apply font-medium sm:text-[20px] text-white max-w-2xl text-center break-words;
     }
 
     .section_container {

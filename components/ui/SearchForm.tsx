@@ -1,5 +1,5 @@
 import Form from 'next/form';
-import SearchFromReset from './SearchFromReset';
+import SearchFormReset from './SearchFormReset';
 import { Search } from 'lucide-react';
 
 const SearchForm = ({query} : {query? : string}) => {
@@ -7,7 +7,7 @@ const SearchForm = ({query} : {query? : string}) => {
     <Form action="/" scroll={false} className='search-form'>
       <input type="text" name="query" placeholder='Search Startup' className='search-input'/>
       {query && 
-      <SearchFromReset/>
+      <SearchFormReset/>
       }
       <button type='submit' className='search-btn text-white'>
         <Search className='size-5'/>

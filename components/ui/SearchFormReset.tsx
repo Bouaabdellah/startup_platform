@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 
-const SearchFromReset = () => {
+const SearchFormReset = () => {
   const setForm = () => {
     const form = document.querySelector(".search-form") as HTMLFormElement;
     if (form) form.reset();
@@ -15,4 +15,4 @@ const SearchFromReset = () => {
   )
 }
 
-export default SearchFromReset
+export default SearchFormReset

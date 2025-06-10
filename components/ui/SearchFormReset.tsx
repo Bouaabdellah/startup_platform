@@ -1,18 +1,21 @@
-"use client";
+'use client';
 
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
+import Link from 'next/link';
 
 const SearchFormReset = () => {
   const setForm = () => {
-    const form = document.querySelector(".search-form") as HTMLFormElement;
+    const form = document.querySelector('.search-form') as HTMLFormElement;
     if (form) form.reset();
-  }
+  };
 
   return (
-    <button className="search-btn text-white" onClick={setForm}>
-     <X className="size-5"/>
+    <button className="search-btn text-white" type="reset" onClick={setForm}>
+      <Link href="/" className="search-btn text-white">
+        <X className="size-5" />
+      </Link>
     </button>
-  )
-}
+  );
+};
 
-export default SearchFormReset
+export default SearchFormReset;

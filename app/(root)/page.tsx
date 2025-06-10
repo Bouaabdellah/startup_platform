@@ -1,22 +1,12 @@
 import StartupCard from "@/components/layout/StartupCard";
 import SearchForm from "@/components/ui/SearchForm";
+import { client } from "@/sanity/lib/client";
+import { getStartup } from "@/sanity/lib/queries";
+import { StartupCardType } from "@/types/sanity";
 
 export default async function Home({searchParams} : {searchParams : Promise<{query? : string}>}) {
   const query = (await searchParams).query;
-  const posts = [{
-    createAt : '2005-09-29',
-    views : 200, 
-    author : {
-      id : 1,
-      name : 'Bouabdellah',
-      image : 'https://placehold.co/48*48'
-    }, 
-    title : 'Khdamli', 
-    image : '', 
-    description : 'react native mobile application', 
-    category : 'mobile development', 
-    id : 1
-  }];
+  const posts = await client.fetch(getStartup);
 
   return (
     <>
@@ -40,9 +30,13 @@ export default async function Home({searchParams} : {searchParams : Promise<{que
           {query ? `serach results for "${query}"` : `All Startups`}
         </p>
         <ul className="card_grid">
-        {
-          posts.map(e => <StartupCard key={e.id} startup={e}/>)
-        }
+        {posts?.length > 0 ? (
+            posts.map((startup: StartupCardType) => (
+              <StartupCard key={startup?._id} startup={startup} />
+            ))
+          ) : (
+            <p className="no-results">No startups found</p>
+        )}
         </ul>
       </section>
     </>

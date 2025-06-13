@@ -31,7 +31,12 @@ export const getStartupDetails = defineQuery(`
     category,
     image,
     description,
-    views,
     pitch
+    }
+    `);
+
+export const getViews = defineQuery(`
+    *[_type == 'startup' && _id == $id][0]{
+    _id, views
     }
     `);

@@ -4,6 +4,9 @@ import { getStartupDetails } from '@/sanity/lib/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import markdownit from 'markdown-it';
+import { Suspense } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
+import View from '@/components/ui/View';
 
 const md = markdownit();
 
@@ -18,16 +21,15 @@ export default async function StartupDetails({
   const startup = await client.fetch(getStartupDetails, { id });
   const {
     _createdAt,
-    views,
     author,
     title,
     image,
     description,
     category,
     pitch,
-    _id,
+    _id
   } = startup;
-  const parsedContent = md.render(startup.pitch || '');
+  const parsedContent = md.render(pitch || '');
 
   return (
     <>
@@ -81,6 +83,9 @@ export default async function StartupDetails({
           )}
         </div>
         <hr className="divider" />
+        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={_id}/>
+        </Suspense>
       </section>
     </>
   );

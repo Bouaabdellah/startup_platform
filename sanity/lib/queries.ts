@@ -40,3 +40,15 @@ export const getViews = defineQuery(`
     _id, views
     }
     `);
+
+export const getUser = defineQuery(`
+    *[_type == 'author' && id == $id][0]{
+    _id,
+    id,
+    name,
+    username,
+    email,
+    image,
+    bio
+    }
+    `);

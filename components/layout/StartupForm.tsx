@@ -1,24 +1,55 @@
 'use client';
 
-import { useState } from 'react';
+import { useActionState, useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import MDEditor from '@uiw/react-md-editor';
 import { Send } from 'lucide-react';
+import { formSchema } from '@/lib/validation';
+import { ZodError } from 'zod';
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = useState<string>('');
-//   const [state, formAction, isPending] = useActionState(handleFormSubmit, {});
-  
-//   const handleFormSubmit = async (prevState : any, form : FormData) => {
 
-//   }
-   const isPending = false;
+  const handleFormSubmit = async (prevState: any, form: FormData) => {
+    try {
+      const formValues = {
+        title: form.get('title') as string,
+        description: form.get('description') as string,
+        category: form.get('category') as string,
+        image: form.get('image') as string,
+        pitch,
+      };
+
+      await formSchema.parseAsync(formValues);
+
+      return {
+        ...prevState,
+        error : '',
+        state : 'SUCCESS'
+      };
+    } catch (error) {
+      if (error instanceof ZodError) {
+        const { fieldErrors } = error.flatten();
+        setErrors(fieldErrors as unknown as Record<string, string>);
+      }
+
+      return {
+        ...prevState,
+        error: 'Invalid form submission',
+        state: 'ERROR',
+      };
+    }
+  };
+  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+    errors,
+    state: 'INITIAL_STATE',
+  });
 
   return (
-    <form action="" className="startup-form">
+    <form action={formAction} className="startup-form">
       <div>
         <label htmlFor="title" className="startup-form_label">
           title
@@ -101,9 +132,9 @@ const StartupForm = () => {
         {errors?.pitch && <p className="startup-form_error">{errors.pitch}</p>}
       </div>
 
-      <Button className="startup-form_btn" disabled={isPending}>
+      <Button className="startup-form_btn" disabled={isPending} type="submit">
         {isPending ? 'Submitting...' : 'Submit Your Pitch'}
-        <Send className="size-6"/>
+        <Send className="size-6" />
       </Button>
     </form>
   );

@@ -15,7 +15,7 @@ export const formSchema = z.object({
     .max(20, 'Category must contain at most 20 characters'),
   image: z.string().refine(async (url) => {
     try {
-      const response = await fetch(url, { method: 'HEADER' });
+      const response = await fetch(url, { method: 'HEAD', cache : 'no-store' });
       const contentType = response.headers.get('content-type');
       return contentType?.startsWith('image/');
     } catch {

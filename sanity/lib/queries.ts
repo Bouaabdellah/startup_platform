@@ -52,3 +52,7 @@ export const getUser = defineQuery(`
     bio
     }
     `);
+
+export const createStartup = defineQuery(`
+    
+    `);

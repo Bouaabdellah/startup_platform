@@ -8,14 +8,20 @@ import MDEditor from '@uiw/react-md-editor';
 import { Send } from 'lucide-react';
 import { formSchema } from '@/lib/validation';
 import { ZodError } from 'zod';
+import { useToast } from '@/hooks/use-toast';
+import { FormValues } from '@/types/interfaces';
+import { createStartup } from '@/lib/actions';
+import { useRouter } from 'next/navigation';
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = useState<string>('');
+  const { toast } = useToast();
+  const router = useRouter();
 
   const handleFormSubmit = async (prevState: any, form: FormData) => {
     try {
-      const formValues = {
+      const formValues : FormValues = {
         title: form.get('title') as string,
         description: form.get('description') as string,
         category: form.get('category') as string,
@@ -23,22 +29,43 @@ const StartupForm = () => {
         pitch,
       };
 
-      await formSchema.parseAsync(formValues);
+      await formSchema.parseAsync(formValues); // validate form inputs 
+   
+      const result = await createStartup(prevState, formValues);
+      if (result.status === 'Success'){
+        toast({
+          title: 'Success',
+          description: 'Your startup pitch has been created successfully',
+        });
 
-      return {
-        ...prevState,
-        error : '',
-        state : 'SUCCESS'
-      };
+        router.push(`/startup/${result._id}`);
+      }
+
+      return result;
     } catch (error) {
       if (error instanceof ZodError) {
         const { fieldErrors } = error.flatten();
         setErrors(fieldErrors as unknown as Record<string, string>);
+        toast({
+          title: 'Error',
+          description: 'Please check your inputs and try again',
+          variant: 'destructive',
+        });
+        return {
+          ...prevState,
+          error: 'Invalid Form Inputs',
+          state: 'ERROR',
+        };
       }
 
+      toast({
+        title: 'Error',
+        description: 'An unexpected error has occurred',
+        variant: 'destructive',
+      });
       return {
         ...prevState,
-        error: 'Invalid form submission',
+        error: 'An unexpected error has occurred',
         state: 'ERROR',
       };
     }

@@ -22,6 +22,7 @@
     "@radix-ui/react-toast": "^1.2.14",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.60.0",
+    "@sentry/nextjs": "^9.30.0",
     "@tailwindcss/typography": "^0.5.15",
     "@uiw/react-md-editor": "^4.0.7",
     "autoprefixer": "^10.4.21",

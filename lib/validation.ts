@@ -8,19 +8,14 @@ export const formSchema = z.object({
   description: z
     .string()
     .min(10, 'Description must contain at least 10 characters')
-    .max(100, 'Description must contain at most 100 characters'),
+    .max(150, 'Description must contain at most 150 characters'),
   category: z
     .string()
     .min(3, 'Category must contain at least 3 characters')
-    .max(20, 'Category must contain at most 20 characters'),
-  image: z.string().refine(async (url) => {
-    try {
-      const response = await fetch(url, { method: 'HEAD', cache : 'no-store' });
-      const contentType = response.headers.get('content-type');
-      return contentType?.startsWith('image/');
-    } catch {
-      return false;
-    }
+    .max(30, 'Category must contain at most 30 characters'),
+  image: z.string().refine((url) => {
+    const imageExtensions = /\.(jpg|jpeg|png)(\?.*)?$/i;
+    return imageExtensions.test(url);
   }, 'Not Valid Image'),
   pitch: z.string().min(20, 'Pitch must be contain least 20 characters'),
 });

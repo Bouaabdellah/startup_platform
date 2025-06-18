@@ -47,7 +47,7 @@ const StartupCard = ({ startup }: { startup: StartupCardType }) => {
         </Link>
       </div>
 
-      <Link href={`/startup/${_id}`}>
+      <Link href={`/startup/${_id}`} className='mb-6 min-h-[235px] flex flex-col'>
         <p className="startup-card_desc">{description}</p>
         <Image
           src={image!}
@@ -58,7 +58,7 @@ const StartupCard = ({ startup }: { startup: StartupCardType }) => {
         />
       </Link>
 
-      <div className="flex-between gap-3 mt-5">
+      <div className="flex-between gap-3 mt-auto">
         <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className="text-16-medium">{category}</p>
         </Link>

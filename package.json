@@ -18,6 +18,7 @@
     "next": "15.0.0-canary.183"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.14",
     "@sanity/image-url": "^1.0.2",

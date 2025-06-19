@@ -5,6 +5,8 @@ import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 import { getStartup } from '@/sanity/lib/queries';
 import { StartupCardType } from '@/types/sanity';
 
+export const revalidate = 60;
+
 export default async function Home({
   searchParams,
 }: {

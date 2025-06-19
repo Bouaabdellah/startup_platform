@@ -12,10 +12,14 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
   const params = { search: query || null };
-  const { data: posts } = await sanityFetch({ query: getStartup, params });
+  const { data: posts } = await sanityFetch({
+    query: getStartup,
+    params,
+    stega : false
+  });
 
   const session = await auth();
-  console.log("session : "+session?.id);
+  console.log('session : ' + session?.id);
 
   return (
     <>
@@ -47,7 +51,7 @@ export default async function Home({
         </ul>
       </section>
 
-      <SanityLive/>
+      <SanityLive />
     </>
   );
 }

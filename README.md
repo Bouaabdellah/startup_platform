@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Startup Pitch Platform 🚀
 
-## Getting Started
+A modern platform where entrepreneurs can submit their startup ideas for virtual pitch competitions, browse other pitches, and gain exposure through a clean minimalistic design for a smooth user experience.
 
-First, run the development server:
+![Startup Platform](https://img.shields.io/badge/Platform-Live-brightgreen)
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 
+## 🌐 Live Demo
+**[View Live Application](https://startup-platform-t8ap.vercel.app/)**
+
+## 📋 Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Quick Start](#quick-start)
+- [Environment Variables](#environment-variables)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+
+## ✨ Features
+
+### 🔐 **GitHub Authentication**
+Seamless user authentication using GitHub accounts through NextAuth.js library for secure and easy login.
+
+### 📝 **Pitch Submission**
+Users can submit comprehensive startup ideas including:
+- Startup title and description
+- Category selection
+- Multimedia links (images or videos)
+- Rich content formatting
+
+### 🔍 **Browse & Discover**
+- View all submitted pitches with clean card layouts
+- Filter pitches by category for targeted browsing
+- Efficient loading and pagination
+
+### 📊 **Detailed Pitch View**
+- Dedicated page for each pitch with full details
+- Multimedia content display (images/videos)
+- Complete startup description and information
+
+### 👤 **User Profiles**
+Personal dashboard where users can:
+- View all their submitted pitches
+- Track pitch performance
+- Manage their startup portfolio
+
+### 📈 **Analytics & Engagement**
+- View counter for each pitch (no upvote system for simplicity)
+- Track pitch popularity and engagement
+- Performance insights
+
+### 🔎 **Advanced Search**
+Comprehensive search functionality to find pitches by:
+- Startup title
+- Author name
+- Category
+- Keywords in description
+
+### 🎨 **Minimalistic Design**
+- Clean and modern UI/UX
+- Essential pages only for optimal user experience
+- Responsive design for all devices
+- Intuitive navigation
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **React 19** | Frontend library for building user interfaces |
+| **Next.js 15** | Full-stack React framework with SSR/SSG |
+| **Sanity** | Headless CMS for content management |
+| **TailwindCSS** | Utility-first CSS framework for styling |
+| **ShadCN** | Re-usable component library |
+| **TypeScript** | Type-safe JavaScript for better development |
+| **NextAuth.js** | Authentication library for Next.js |
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ installed
+- Git installed
+- GitHub account for authentication
+- Sanity account for CMS
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Bouaabdellah/startup_platform.git
+   cd startup_platform
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory and add the following:
+
+   ```env
+   # Sanity Configuration
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+   NEXT_PUBLIC_SANITY_DATASET=your_dataset_name
+   NEXT_PUBLIC_SANITY_API_VERSION=vX
+   SANITY_TOKEN=your_sanity_token
+
+   # Authentication
+   AUTH_SECRET=your_auth_secret
+   AUTH_GITHUB_ID=your_github_oauth_id
+   AUTH_GITHUB_SECRET=your_github_oauth_secret
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:3000` to see the application running.
+
+## 🔧 Environment Variables
+
+### Sanity Setup
+1. Sign up at [Sanity.io](https://www.sanity.io/)
+2. Create a new project
+3. Get your project ID, dataset name, and API version
+4. Generate a token with appropriate permissions
+
+### GitHub OAuth Setup
+1. Go to GitHub Settings → Developer settings → OAuth Apps
+2. Create a new OAuth App
+3. Set Authorization callback URL to: `http://localhost:3000/api/auth/callback/github`
+4. Copy the Client ID and Client Secret
+
+### Authentication Secret
+Generate a random string for `AUTH_SECRET`:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+openssl rand -base64 32
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🤝 Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-## Learn More
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🙏 Acknowledgments
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Built with guidance from **JS Mastery** - thanks for the excellent tutorials and learning resources
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Built with ❤️ by [Bouaabdellah](https://github.com/Bouaabdellah)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*If you found this project helpful, please consider giving it a ⭐ on GitHub!*

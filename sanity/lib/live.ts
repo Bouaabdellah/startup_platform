@@ -8,6 +8,5 @@ import { client } from './client';
 export const { sanityFetch, SanityLive } = defineLive({
   client: client.withConfig({
     apiVersion: 'vX',
-    stega : false
   }),
 });
